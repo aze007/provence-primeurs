@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provence Primeurs — Grossiste fruits & légumes frais à Aix-en-Provence</title>
+<meta name="description" content="Grossiste en fruits et légumes frais à Aix-en-Provence. Livraison quotidienne pour restaurants, hôtels, écoles, collectivités et commerces à Marseille, Toulon, Nice et Montpellier.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-900:#13351f; --green-700:#1f6b3a; --green-500:#2e9e54; --green-300:#7cc98e;
+    --leaf:#3faa5f; --cream:#f7f5ec; --cream-2:#efeede; --sun:#f5b53d; --terra:#e2703a; --tomato:#d2452f;
+    --ink:#15231a; --muted:#5e6f63; --white:#ffffff; --stroke:#e3e2d4;
+    --shadow:0 18px 50px rgba(19,53,31,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.1;letter-spacing:-.5px}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:'Inter';font-weight:700;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-500)}
+  .btn{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:14px 26px;font-weight:600;font-size:15px;cursor:pointer;border:none;transition:transform .2s,box-shadow .2s,background .2s}
+  .btn-primary{background:var(--green-700);color:#fff;box-shadow:0 10px 26px rgba(31,107,58,.34)}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(31,107,58,.42);background:var(--green-900)}
+  .btn-ghost{background:rgba(255,255,255,.8);color:var(--green-900);border:1.5px solid var(--stroke)}
+  .btn-ghost:hover{transform:translateY(-3px);background:#fff}
+  section{position:relative}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- NAV ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,box-shadow .3s,padding .3s;padding:18px 0}
+  header.scrolled{background:rgba(247,245,236,.92);backdrop-filter:blur(12px);box-shadow:0 6px 24px rgba(19,53,31,.07);padding:10px 0}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:11px;font-family:'Fraunces';font-weight:700;font-size:21px;color:var(--green-900)}
+  .logo .mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--green-500),var(--green-700));display:grid;place-items:center;font-size:22px;box-shadow:0 8px 20px rgba(31,107,58,.3)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-weight:500;font-size:15px;color:var(--ink);transition:color .2s}
+  .nav-links a:hover{color:var(--green-500)}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .burger span{width:24px;height:2.5px;background:var(--green-900);border-radius:2px;transition:.3s}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:160px 0 90px;background:
+      radial-gradient(900px 500px at 85% -5%,rgba(124,201,142,.4),transparent 60%),
+      radial-gradient(700px 500px at -5% 30%,rgba(245,181,61,.22),transparent 55%),
+      var(--cream);overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .hero h1{font-size:clamp(36px,5vw,62px);margin:18px 0 20px}
+  .hero h1 em{font-style:italic;color:var(--green-700)}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:30px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+  .hero-badges{display:flex;gap:26px;flex-wrap:wrap}
+  .hb{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--green-900)}
+  .hb .dot{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;font-size:17px;box-shadow:var(--shadow)}
+
+  /* hero visual */
+  .hero-art{position:relative;height:480px}
+  .hero-photo{position:absolute;inset:0;background:url('images/hero.jpg') center/cover;border-radius:30px;box-shadow:0 30px 70px rgba(19,53,31,.32)}
+  .hero-photo::after{content:"";position:absolute;inset:0;border-radius:30px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+  .hero-badge-float{position:absolute;top:22px;left:-14px;background:#fff;border-radius:14px;padding:11px 17px;font-weight:600;font-size:14px;color:var(--green-900);box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .hero-pill{position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);background:#fff;border-radius:16px;padding:13px 20px;box-shadow:var(--shadow);display:flex;align-items:center;gap:12px;white-space:nowrap}
+  .hero-pill b{font-family:'Fraunces';font-size:22px;color:var(--green-700)}
+
+  /* ---------- bandeau villes ---------- */
+  .strip{background:var(--green-900);color:#fff;padding:20px 0}
+  .strip .wrap{display:flex;align-items:center;justify-content:center;gap:14px 38px;flex-wrap:wrap;font-weight:600;font-size:15px}
+  .strip span{opacity:.55}
+  .strip b{color:var(--sun)}
+
+  /* ---------- sections ---------- */
+  .sec{padding:90px 0}
+  .sec-head{max-width:680px;margin:0 auto 54px;text-align:center}
+  .sec-head h2{font-size:clamp(28px,3.6vw,44px);margin:14px 0 14px}
+  .sec-head p{color:var(--muted);font-size:17px}
+
+  /* clients */
+  .clients{background:var(--white)}
+  .client-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:18px}
+  .client{background:var(--cream);border:1px solid var(--stroke);border-radius:18px;padding:26px 20px;text-align:center;transition:transform .25s,box-shadow .25s,border-color .25s}
+  .client:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--green-300)}
+  .client .ic{font-size:40px;display:block;margin-bottom:12px}
+  .client b{display:block;font-size:15px;font-weight:600}
+  .client small{color:var(--muted);font-size:12.5px}
+
+  /* produits */
+  .prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+  .prod{position:relative;border-radius:22px;padding:28px 26px;min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;overflow:hidden;box-shadow:var(--shadow);background-size:cover;background-position:center;transition:transform .3s}
+  .prod:hover{transform:translateY(-7px)}
+  .prod::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,28,16,.9),rgba(10,28,16,.25) 58%,rgba(10,28,16,.05))}
+  .prod>*{position:relative;z-index:1}
+  .prod .chip{align-self:flex-start;margin-bottom:auto;background:rgba(255,255,255,.18);backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.32);padding:5px 13px;border-radius:999px;font-size:12px;font-weight:600}
+  .prod h3{font-size:23px;margin-bottom:6px}
+  .prod p{font-size:14px;opacity:.95}
+
+  /* pourquoi */
+  .why{background:linear-gradient(180deg,var(--cream),var(--cream-2))}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+  .feat{background:#fff;border-radius:20px;padding:30px;box-shadow:0 10px 30px rgba(19,53,31,.06);transition:transform .25s}
+  .feat:hover{transform:translateY(-6px)}
+  .feat .ic{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,var(--green-300),var(--green-500));display:grid;place-items:center;font-size:26px;margin-bottom:16px}
+  .feat h3{font-size:20px;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:14.5px}
+
+  /* showcase logistique */
+  .showcase{background:var(--white)}
+  .show-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .show-photos{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+  .show-photos img{width:100%;height:360px;object-fit:cover;border-radius:22px;box-shadow:var(--shadow)}
+  .show-text h2{font-size:clamp(26px,3.2vw,38px);margin:12px 0 14px}
+  .show-text>p{color:var(--muted);font-size:16px}
+  .show-list{list-style:none;margin-top:20px;display:grid;gap:13px}
+  .show-list li{display:flex;gap:12px;align-items:flex-start;font-size:15px;font-weight:500}
+  .show-list li::before{content:"✓";color:#fff;background:var(--green-500);min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;margin-top:2px}
+  @media(max-width:880px){.show-grid{grid-template-columns:1fr}.show-photos img{height:240px}}
+
+  /* zone livraison */
+  .zone{background:var(--green-900);color:#fff}
+  .zone .sec-head h2,.zone .sec-head p{color:#fff}
+  .zone .sec-head p{opacity:.8}
+  .zone-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+  .city-list{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .city{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px 20px;transition:background .25s}
+  .city:hover{background:rgba(255,255,255,.12)}
+  .city b{font-family:'Fraunces';font-size:19px;display:flex;align-items:center;gap:8px}
+  .city.hq b{color:var(--sun)}
+  .city small{color:rgba(255,255,255,.6);font-size:13px}
+  .map{position:relative;aspect-ratio:1/1;border-radius:24px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);overflow:hidden;display:grid;place-items:center}
+
+  /* etapes */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;counter-reset:s}
+  .step{position:relative;padding:30px 26px;background:var(--white);border:1px solid var(--stroke);border-radius:20px}
+  .step::before{counter-increment:s;content:counter(s);font-family:'Fraunces';font-weight:700;font-size:26px;color:#fff;width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--terra),var(--tomato));display:grid;place-items:center;margin-bottom:16px}
+  .step h3{font-size:19px;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:14.5px}
+
+  /* stats */
+  .stats{background:var(--white)}
+  .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;text-align:center}
+  .stat .n{font-family:'Fraunces';font-weight:700;font-size:46px;color:var(--green-700);line-height:1}
+  .stat .l{color:var(--muted);font-size:14.5px;margin-top:8px}
+
+  /* CTA + contact */
+  .cta{padding:0 0 90px}
+  .cta-card{background:linear-gradient(135deg,var(--green-700),var(--green-900));border-radius:30px;padding:60px;color:#fff;box-shadow:0 30px 70px rgba(19,53,31,.3);position:relative;overflow:hidden}
+  .cta-card::after{content:"🍅🥬🥕🍋🥒🍎";position:absolute;font-size:90px;opacity:.08;bottom:-20px;right:20px;letter-spacing:14px;white-space:nowrap}
+  .cta-card h2{font-size:clamp(28px,3.5vw,40px);margin-bottom:14px;max-width:620px}
+  .cta-card p{opacity:.9;max-width:560px;margin-bottom:26px}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:14px}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-weight:600;font-size:13.5px;margin-bottom:6px}
+  .field input,.field textarea,.field select{width:100%;padding:13px 15px;border-radius:12px;border:1.5px solid var(--stroke);background:#fff;font-family:inherit;font-size:15px;color:var(--ink)}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--green-500)}
+  .info-line{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px}
+  .info-line .ic{width:46px;height:46px;border-radius:13px;background:var(--cream);display:grid;place-items:center;font-size:21px;flex-shrink:0}
+  .info-line b{display:block;font-size:15px}
+  .info-line span{color:var(--muted);font-size:14px}
+
+  /* footer */
+  footer{background:var(--green-900);color:rgba(255,255,255,.75);padding:54px 0 26px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:34px}
+  footer h4{color:#fff;font-family:'Fraunces';font-size:18px;margin-bottom:14px}
+  footer a{display:block;color:rgba(255,255,255,.72);font-size:14px;padding:4px 0;transition:color .2s}
+  footer a:hover{color:var(--sun)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px}
+
+  /* responsive */
+  @media(max-width:880px){
+    .hero-grid,.zone-grid,.contact-grid,.foot-grid{grid-template-columns:1fr}
+    .hero-art{height:380px;order:-1}
+    .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:75%;max-width:320px;background:var(--cream);flex-direction:column;justify-content:center;gap:26px;transition:right .35s;box-shadow:-10px 0 40px rgba(0,0,0,.1);z-index:90}
+    .nav-links.open{right:0}
+    .burger{display:flex;z-index:95}
+    .cta-card{padding:38px 26px}
+    .sec{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="logo"><span class="mark">🍃</span> Provence Primeurs</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#clients">Pour qui ?</a>
+      <a href="#produits">Nos produits</a>
+      <a href="#pourquoi">Pourquoi nous</a>
+      <a href="#zone">Livraison</a>
+      <a href="#contact" class="btn btn-primary" style="padding:11px 22px">Demander un devis</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow">Grossiste fruits &amp; légumes · Aix-en-Provence</span>
+      <h1>La fraîcheur de la Provence, <em>livrée chaque matin</em> à vos professionnels.</h1>
+      <p class="lead">Fruits et légumes frais, de saison et locaux, sélectionnés chaque jour au marché. Une logistique fiable pour la restauration, l'hôtellerie, les collectivités et les commerces.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Demander un devis gratuit →</a>
+        <a href="#produits" class="btn btn-ghost">Découvrir nos produits</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hb"><span class="dot">🚚</span> Livraison 6j/7</div>
+        <div class="hb"><span class="dot">🌅</span> Récolté & livré frais</div>
+        <div class="hb"><span class="dot">📍</span> 5 grandes villes du Sud</div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="hero-photo"></div>
+      <div class="hero-badge-float">🌅 Frais du matin</div>
+      <div class="hero-pill"><b>+150</b><span>professionnels livrés chaque semaine</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDEAU VILLES -->
+<div class="strip">
+  <div class="wrap">
+    <span>📍</span> <b>Aix-en-Provence</b> <span>•</span> Marseille <span>•</span> Toulon <span>•</span> Nice <span>•</span> Montpellier
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<section class="sec clients" id="clients">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nos clients professionnels</span>
+      <h2>Nous fournissons celles et ceux qui nourrissent la région</h2>
+      <p>Un interlocuteur unique pour tous vos besoins en produits frais, quel que soit votre secteur.</p>
+    </div>
+    <div class="client-grid">
+      <div class="client reveal"><span class="ic">🛒</span><b>Supermarchés</b><small>& grandes surfaces</small></div>
+      <div class="client reveal"><span class="ic">🏪</span><b>Supérettes</b><small>commerces de proximité</small></div>
+      <div class="client reveal"><span class="ic">🍽️</span><b>Restaurants</b><small>traditionnels & collectifs</small></div>
+      <div class="client reveal"><span class="ic">🏨</span><b>Hôtels</b><small>& établissements</small></div>
+      <div class="client reveal"><span class="ic">🥖</span><b>Boulangeries</b><small>& pâtisseries</small></div>
+      <div class="client reveal"><span class="ic">🏫</span><b>Écoles</b><small>& cantines scolaires</small></div>
+      <div class="client reveal"><span class="ic">🍱</span><b>Cantines</b><small>restauration collective</small></div>
+      <div class="client reveal"><span class="ic">🏥</span><b>Hôpitaux</b><small>& établissements de santé</small></div>
+      <div class="client reveal"><span class="ic">🏛️</span><b>Services publics</b><small>mairies & administrations</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section class="sec" id="produits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nos produits</span>
+      <h2>Une gamme complète, fraîche et de saison</h2>
+      <p>Sélectionnés chaque matin pour leur qualité, leur goût et leur fraîcheur.</p>
+    </div>
+    <div class="prod-grid">
+      <div class="prod reveal" style="background-image:url('images/fruits.jpg')"><span class="chip">🍑 Fruits</span><h3>Fruits frais</h3><p>Pommes, agrumes, fruits rouges, melons de Provence… le meilleur de chaque saison.</p></div>
+      <div class="prod reveal" style="background-image:url('images/legumes.jpg')"><span class="chip">🥬 Légumes</span><h3>Légumes frais</h3><p>Tomates, salades, courgettes, aubergines, légumes anciens et du soleil.</p></div>
+      <div class="prod reveal" style="background-image:url('images/herbes.jpg')"><span class="chip">🌿 Aromates</span><h3>Herbes & aromates</h3><p>Basilic, persil, thym de Provence, herbes fraîches coupées du jour.</p></div>
+      <div class="prod reveal" style="background-image:url('images/local.jpg')"><span class="chip">🧺 Local</span><h3>Produits locaux</h3><p>Circuits courts avec les producteurs de la région PACA et d'Occitanie.</p></div>
+      <div class="prod reveal" style="background-image:url('images/bio.jpg')"><span class="chip">🍇 Bio</span><h3>Bio & label</h3><p>Une sélection bio et labellisée pour répondre à toutes vos exigences.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE LOGISTIQUE -->
+<section class="sec showcase">
+  <div class="wrap show-grid">
+    <div class="show-photos reveal">
+      <img src="images/entrepot.jpg" alt="Notre entrepôt de fruits et légumes">
+      <img src="images/livraison.jpg" alt="Livraison en camion réfrigéré">
+    </div>
+    <div class="show-text reveal">
+      <span class="eyebrow">Notre savoir-faire</span>
+      <h2>Du marché à votre cuisine, sans rupture de fraîcheur</h2>
+      <p>Chaque nuit, nous sélectionnons les meilleurs produits. Préparés et contrôlés dans notre entrepôt d'Aix-en-Provence, ils partent au petit matin dans nos véhicules réfrigérés.</p>
+      <ul class="show-list">
+        <li>Sélection quotidienne au marché de gros</li>
+        <li>Respect strict de la chaîne du froid (HACCP)</li>
+        <li>Préparation des commandes le matin même</li>
+        <li>Tournées de livraison optimisées sur tout le Sud</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section class="sec why" id="pourquoi">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pourquoi nous choisir</span>
+      <h2>Un partenaire fiable, pas seulement un fournisseur</h2>
+    </div>
+    <div class="why-grid">
+      <div class="feat reveal"><div class="ic">🌅</div><h3>Fraîcheur garantie</h3><p>Produits sélectionnés chaque matin et livrés dans la journée, pour une qualité optimale dans vos cuisines.</p></div>
+      <div class="feat reveal"><div class="ic">💶</div><h3>Prix grossiste</h3><p>Des tarifs négociés au plus juste grâce à nos volumes et nos relations directes avec les producteurs.</p></div>
+      <div class="feat reveal"><div class="ic">🚚</div><h3>Livraison fiable</h3><p>Tournées régulières 6j/7 sur tout le Sud, dans le respect de la chaîne du froid et de vos horaires.</p></div>
+      <div class="feat reveal"><div class="ic">🔎</div><h3>Traçabilité totale</h3><p>Origine connue, normes d'hygiène strictes (HACCP) et documents conformes pour les collectivités.</p></div>
+      <div class="feat reveal"><div class="ic">🤝</div><h3>Conseil & sur-mesure</h3><p>Un commercial dédié qui connaît votre activité et adapte les commandes à vos besoins réels.</p></div>
+      <div class="feat reveal"><div class="ic">📱</div><h3>Commande facile</h3><p>Par téléphone, email ou WhatsApp — passez commande en quelques minutes, sans paperasse.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE -->
+<section class="sec zone" id="zone">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" style="color:var(--sun)">Zone de livraison</span>
+      <h2>Au départ d'Aix-en-Provence, vers tout le Sud</h2>
+      <p>Une logistique pensée pour livrer vite et frais sur les principales villes de la région.</p>
+    </div>
+    <div class="zone-grid">
+      <div class="city-list reveal">
+        <div class="city hq"><b>📍 Aix-en-Provence</b><small>Siège & entrepôt</small></div>
+        <div class="city"><b>Marseille</b><small>Livraison quotidienne</small></div>
+        <div class="city"><b>Toulon</b><small>Var & littoral</small></div>
+        <div class="city"><b>Nice</b><small>Côte d'Azur</small></div>
+        <div class="city"><b>Montpellier</b><small>Occitanie</small></div>
+        <div class="city"><b>Et alentours</b><small>Sur devis selon volume</small></div>
+      </div>
+      <div class="map reveal">
+        <svg viewBox="0 0 300 300" width="78%" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 150 Q90 90 150 120 T270 110" stroke="rgba(245,181,61,.5)" stroke-width="2.5" stroke-dasharray="6 7"/>
+          <g font-family="Inter" font-size="11" fill="#fff">
+            <circle cx="120" cy="150" r="11" fill="#f5b53d"/><text x="120" y="178" text-anchor="middle">Aix</text>
+            <circle cx="105" cy="200" r="7" fill="#7cc98e"/><text x="105" y="222" text-anchor="middle">Marseille</text>
+            <circle cx="175" cy="205" r="7" fill="#7cc98e"/><text x="175" y="227" text-anchor="middle">Toulon</text>
+            <circle cx="250" cy="150" r="7" fill="#7cc98e"/><text x="250" y="172" text-anchor="middle">Nice</text>
+            <circle cx="55" cy="120" r="7" fill="#7cc98e"/><text x="55" y="108" text-anchor="middle">Montpellier</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPES -->
+<section class="sec" id="commander">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Comment ça marche</span>
+      <h2>Devenir client en 3 étapes simples</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><h3>Vous nous contactez</h3><p>Dites-nous votre activité et vos besoins. On établit un devis adapté, sans engagement.</p></div>
+      <div class="step reveal"><h3>Vous commandez</h3><p>Par téléphone, email ou WhatsApp, jusqu'à la veille de la livraison souhaitée.</p></div>
+      <div class="step reveal"><h3>On vous livre frais</h3><p>Préparation le matin même, livraison dans la journée, directement chez vous.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="sec stats">
+  <div class="wrap stat-grid">
+    <div class="stat reveal"><div class="n">15+</div><div class="l">ans d'expérience</div></div>
+    <div class="stat reveal"><div class="n">150+</div><div class="l">clients professionnels</div></div>
+    <div class="stat reveal"><div class="n">5</div><div class="l">villes livrées</div></div>
+    <div class="stat reveal"><div class="n">6j/7</div><div class="l">de livraison</div></div>
+  </div>
+</section>
+
+<!-- CTA + CONTACT -->
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <span class="eyebrow" style="color:var(--sun)">Demande de devis</span>
+      <h2>Recevez votre devis personnalisé sous 24h</h2>
+      <p>Dites-nous qui vous êtes et ce dont vous avez besoin. Un commercial vous recontacte rapidement.</p>
+      <div class="contact-grid">
+        <form id="devisForm" action="https://formsubmit.co/abd.adous@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis — site Provence Primeurs">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="field"><label>Nom de l'établissement</label><input name="Établissement" required placeholder="Restaurant Le Provençal"></div>
+          <div class="field"><label>Type d'activité</label>
+            <select name="Activité">
+              <option>Restaurant</option><option>Hôtel</option><option>Supermarché / Supérette</option>
+              <option>Boulangerie</option><option>École / Cantine</option><option>Hôpital / Santé</option>
+              <option>Mairie / Service public</option><option>Autre</option>
+            </select>
+          </div>
+          <div class="field"><label>Ville de livraison</label><input name="Ville" required placeholder="Marseille"></div>
+          <div class="field"><label>Téléphone</label><input name="Téléphone" required placeholder="06 00 00 00 00"></div>
+          <div class="field"><label>Votre email</label><input type="email" name="email" required placeholder="vous@exemple.fr"></div>
+          <div class="field"><label>Votre besoin (facultatif)</label><textarea name="Besoin" rows="2" placeholder="Volumes, produits, fréquence…"></textarea></div>
+          <button type="submit" class="btn" style="background:#fff;color:var(--green-900);width:100%">Envoyer ma demande →</button>
+        </form>
+        <div>
+          <div class="info-line"><div class="ic">📍</div><div><b>Adresse</b><span>[Adresse exacte], 13090 Aix-en-Provence</span></div></div>
+          <div class="info-line"><div class="ic">📞</div><div><b>Téléphone</b><span>04 XX XX XX XX</span></div></div>
+          <div class="info-line"><div class="ic">✉️</div><div><b>Email</b><span>contact@provence-primeurs.fr</span></div></div>
+          <div class="info-line"><div class="ic">🕖</div><div><b>Horaires</b><span>Du lundi au samedi · 4h – 13h</span></div></div>
+          <div class="info-line"><div class="ic">💬</div><div><b>WhatsApp</b><span>Commande rapide possible</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#top" class="logo" style="color:#fff;margin-bottom:14px"><span class="mark">🍃</span> Provence Primeurs</a>
+        <p style="font-size:14px;max-width:330px">Votre grossiste en fruits et légumes frais à Aix-en-Provence. La qualité du marché, livrée chez les professionnels du Sud.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="#clients">Pour qui ?</a><a href="#produits">Nos produits</a><a href="#pourquoi">Pourquoi nous</a><a href="#zone">Livraison</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="#contact">Demander un devis</a><a href="tel:+33400000000">04 XX XX XX XX</a><a href="mailto:contact@provence-primeurs.fr">contact@provence-primeurs.fr</a>
+        <span style="font-size:14px">Aix-en-Provence (13)</span>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Provence Primeurs — Tous droits réservés.</span>
+      <span>Aix-en-Provence · Marseille · Toulon · Nice · Montpellier</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // nav scroll
+  const header=document.getElementById('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
+  // burger
+  const burger=document.getElementById('burger'), nav=document.getElementById('navLinks');
+  burger.addEventListener('click',()=>nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%6*60)+'ms';io.observe(el);});
+</script>
+</body>
+</html>
